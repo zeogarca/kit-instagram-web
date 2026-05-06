@@ -1,0 +1,1170 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iñaki Méndez — Nutriólogo & Entrenador Personal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #00E5A0;
+    --green-dark: #00C487;
+    --orange: #FF6B35;
+    --bg: #080808;
+    --bg2: #111111;
+    --bg3: #181818;
+    --card: #141414;
+    --border: rgba(255,255,255,0.07);
+    --text: #FFFFFF;
+    --text2: #A0A0A0;
+    --text3: #666666;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(8,8,8,0.0);
+    backdrop-filter: blur(0px);
+    transition: background 0.3s, backdrop-filter 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--green);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--text2); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green); color: #000;
+    padding: 0.5rem 1.25rem; border-radius: 50px;
+    text-decoration: none; font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,229,160,0.3); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 5rem 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 50%, rgba(0,229,160,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 30%, rgba(255,107,53,0.04) 0%, transparent 70%);
+  }
+  .hero-grid-line {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 3rem; max-width: 480px; width: 100%;
+  }
+
+  /* Instagram Card */
+  .ig-card {
+    width: 100%;
+    background: var(--card);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,229,160,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .ig-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+  }
+
+  /* Profile row */
+  .ig-profile-row {
+    display: flex; align-items: center; gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .ig-avatar-wrap {
+    position: relative; flex-shrink: 0;
+  }
+  .ig-avatar-ring {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    animation: ring-spin 6s linear infinite;
+  }
+  @keyframes ring-spin {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+  .ig-avatar-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--card);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--card);
+  }
+  .ig-avatar-inner img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .ig-avatar-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; color: var(--green);
+  }
+
+  .ig-profile-info { flex: 1; min-width: 0; }
+  .ig-name-row {
+    display: flex; align-items: center; gap: 0.4rem;
+    margin-bottom: 0.15rem;
+  }
+  .ig-name {
+    font-weight: 700; font-size: 1.05rem;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .ig-verified {
+    width: 18px; height: 18px; flex-shrink: 0;
+    background: linear-gradient(135deg, #0095f6, #0064d2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,149,246,0.4);
+  }
+  .ig-verified svg { width: 10px; height: 10px; }
+  .ig-handle {
+    color: var(--text2); font-size: 0.8rem; margin-bottom: 0.3rem;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .ig-handle:hover { color: var(--green); }
+  .ig-category {
+    font-size: 0.75rem; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
+  }
+
+  /* Stats row */
+  .ig-stats {
+    display: flex; justify-content: space-around;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+  .ig-stat { text-align: center; }
+  .ig-stat-num {
+    font-weight: 700; font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    display: block;
+  }
+  .ig-stat-label {
+    font-size: 0.7rem; color: var(--text2);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* Bio */
+  .ig-bio {
+    font-size: 0.85rem; line-height: 1.6;
+    color: #D0D0D0; margin-bottom: 1rem;
+  }
+
+  /* Certs badges */
+  .ig-certs {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .ig-cert {
+    background: rgba(0,229,160,0.08);
+    border: 1px solid rgba(0,229,160,0.2);
+    color: var(--green);
+    font-size: 0.68rem; font-weight: 600;
+    padding: 0.3rem 0.65rem; border-radius: 50px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Action buttons */
+  .ig-actions {
+    display: flex; gap: 0.6rem; margin-bottom: 1.25rem;
+  }
+  .ig-btn {
+    flex: 1; text-align: center;
+    padding: 0.55rem 0.75rem; border-radius: 10px;
+    font-size: 0.8rem; font-weight: 600;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: all 0.2s;
+  }
+  .ig-btn-primary {
+    background: var(--green); color: #000;
+  }
+  .ig-btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .ig-btn-secondary {
+    background: var(--bg3); color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .ig-btn-secondary:hover { background: #222; border-color: var(--green); }
+
+  /* Mini grid */
+  .ig-mini-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+    border-radius: 12px; overflow: hidden;
+  }
+  .ig-grid-item {
+    aspect-ratio: 1;
+    background: var(--bg3);
+    overflow: hidden; position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .ig-grid-item:hover { transform: scale(1.02); z-index: 1; }
+  .ig-grid-item a {
+    display: block; width: 100%; height: 100%;
+    text-decoration: none;
+  }
+  .ig-grid-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .ig-grid-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text3); font-size: 1.5rem;
+  }
+  .ig-grid-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,229,160,0.15);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .ig-grid-item:hover .ig-grid-overlay { opacity: 1; }
+
+  /* Hero tagline */
+  .hero-tagline { text-align: center; }
+  .hero-tagline h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+  .hero-tagline h1 span { color: var(--green); }
+  .hero-tagline p {
+    color: var(--text2); font-size: 1rem; line-height: 1.6;
+    max-width: 380px; margin: 0 auto 1.5rem;
+  }
+  .hero-stats-row {
+    display: flex; justify-content: center; gap: 2.5rem;
+    margin-top: 1rem;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; color: var(--green);
+    display: block; line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.7rem; color: var(--text2);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .hero-scroll {
+    margin-top: 2rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--text3); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 5rem 1.5rem; }
+  .section-inner { max-width: 960px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--green); text-transform: uppercase; letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .section-title span { color: var(--green); }
+
+  /* reveal animation */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .stagger { --i: 0; transition-delay: calc(var(--i) * 0.1s); }
+
+  /* ─── SOBRE MÍ ─── */
+  #sobre {
+    background: var(--bg2);
+    position: relative; overflow: hidden;
+  }
+  #sobre::before {
+    content: '';
+    position: absolute; right: -10%; top: 10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,229,160,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sobre-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: center;
+  }
+  @media (max-width: 768px) { .sobre-grid { grid-template-columns: 1fr; } }
+  .sobre-text p {
+    color: var(--text2); line-height: 1.8; margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+  .sobre-badges {
+    display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
+  }
+  .badge {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem; border-radius: 8px;
+    font-size: 0.78rem; font-weight: 500; color: var(--text2);
+    transition: all 0.2s;
+  }
+  .badge:hover { border-color: var(--green); color: var(--green); }
+  .badge.cert {
+    background: rgba(0,229,160,0.06);
+    border-color: rgba(0,229,160,0.2);
+    color: var(--green); font-weight: 600;
+  }
+  .sobre-visual {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .sobre-ig-card {
+    background: var(--card); border-radius: 16px;
+    border: 1px solid var(--border); padding: 1.25rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none; color: inherit;
+  }
+  .sobre-ig-card:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-2px); }
+  .sobre-ig-avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    padding: 2px; flex-shrink: 0;
+  }
+  .sobre-ig-avatar-inner {
+    width: 100%; height: 100%; border-radius: 50%;
+    overflow: hidden; background: var(--card);
+    border: 2px solid var(--card);
+  }
+  .sobre-ig-avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
+  .sobre-ig-info { flex: 1; }
+  .sobre-ig-handle { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .sobre-ig-sub { color: var(--text2); font-size: 0.78rem; }
+  .sobre-ig-stats { text-align: right; }
+  .sobre-ig-stat-num { font-weight: 700; font-size: 1rem; color: var(--green); }
+  .sobre-ig-stat-label { font-size: 0.7rem; color: var(--text2); }
+  .sobre-ig-card .ig-logo {
+    color: var(--text3); flex-shrink: 0;
+  }
+
+  /* ─── SERVICIOS ─── */
+  #servicios { background: var(--bg); }
+  .servicios-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .servicio-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2rem;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .servicio-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--green), var(--orange));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .servicio-card:hover { border-color: rgba(0,229,160,0.2); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+  .servicio-card:hover::after { transform: scaleX(1); }
+  .servicio-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: rgba(0,229,160,0.1); border: 1px solid rgba(0,229,160,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.25rem;
+  }
+  .servicio-title {
+    font-weight: 700; font-size: 1.1rem; margin-bottom: 0.6rem;
+  }
+  .servicio-desc {
+    color: var(--text2); font-size: 0.88rem; line-height: 1.6;
+  }
+  .servicio-cta {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 1.25rem;
+    color: var(--green); font-size: 0.85rem; font-weight: 600;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .servicio-cta:hover { gap: 0.7rem; }
+
+  /* ─── GALERÍA ─── */
+  #galeria { background: var(--bg2); }
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px; margin-top: 2.5rem;
+    border-radius: 16px; overflow: hidden;
+  }
+  @media (max-width: 600px) { .galeria-grid { grid-template-columns: repeat(2, 1fr); } }
+  .galeria-item {
+    aspect-ratio: 1;
+    background: var(--card);
+    position: relative; overflow: hidden;
+    cursor: pointer;
+  }
+  .galeria-item:first-child { grid-row: span 2; aspect-ratio: unset; }
+  .galeria-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+  .galeria-item:hover img { transform: scale(1.05); }
+  .galeria-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 1rem;
+  }
+  .galeria-item:hover .galeria-overlay { opacity: 1; }
+  .galeria-overlay span { font-size: 0.8rem; font-weight: 600; color: var(--green); }
+  .galeria-placeholder {
+    width: 100%; height: 100%;
+    min-height: 180px;
+    background: linear-gradient(135deg, #161616 0%, #202020 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem; color: var(--text3);
+    font-size: 0.78rem; text-align: center; padding: 1rem;
+  }
+  .galeria-placeholder svg { opacity: 0.3; }
+  .galeria-link {
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1.75rem; gap: 0.75rem;
+  }
+  .galeria-link a {
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--text); text-decoration: none;
+    padding: 0.75rem 1.75rem; border-radius: 50px;
+    font-size: 0.88rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.6rem;
+    transition: all 0.2s;
+  }
+  .galeria-link a:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+
+  /* ─── MÉTRICAS ─── */
+  #metricas { background: var(--bg); }
+  .metricas-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+    margin-top: 2.5rem;
+  }
+  .metrica {
+    padding: 2.5rem 1.5rem; text-align: center;
+    background: var(--card);
+    transition: background 0.2s;
+  }
+  .metrica:hover { background: var(--bg3); }
+  .metrica-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem; color: var(--green);
+    line-height: 1; display: block; margin-bottom: 0.5rem;
+  }
+  .metrica-label {
+    font-size: 0.78rem; color: var(--text2);
+    text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500;
+  }
+  .metrica-icon { font-size: 1.5rem; margin-bottom: 0.75rem; opacity: 0.6; }
+
+  /* ─── CONTACTO ─── */
+  #contacto {
+    background: var(--bg2);
+    position: relative; overflow: hidden;
+  }
+  #contacto::before {
+    content: '';
+    position: absolute; left: -10%; top: 20%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(0,229,160,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contacto-inner {
+    max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .contacto-inner .section-title { margin-bottom: 0.75rem; }
+  .contacto-inner > p {
+    color: var(--text2); margin-bottom: 2.5rem; line-height: 1.6;
+  }
+  .contacto-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin-bottom: 2.5rem;
+  }
+  .contacto-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    text-align: center; text-decoration: none; color: inherit;
+    transition: all 0.2s;
+  }
+  .contacto-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+  .contacto-card.wa { border-color: rgba(37,211,102,0.2); }
+  .contacto-card.wa:hover { border-color: #25D366; }
+  .contacto-card.ig1 { border-color: rgba(225,48,108,0.2); }
+  .contacto-card.ig1:hover { border-color: #E1306C; }
+  .contacto-card.ig2 { border-color: rgba(0,149,246,0.2); }
+  .contacto-card.ig2:hover { border-color: #0095f6; }
+  .contacto-card.tiktok { border-color: rgba(255,0,80,0.2); }
+  .contacto-card.tiktok:hover { border-color: #FF0050; }
+  .contacto-card-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+  .contacto-card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .contacto-card-sub { color: var(--text2); font-size: 0.78rem; }
+  .cta-whatsapp {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: #25D366; color: #000;
+    padding: 1rem 2.5rem; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.3);
+  }
+  .cta-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(37,211,102,0.4); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg); border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem; text-align: center;
+  }
+  .footer-inner { max-width: 960px; margin: 0 auto; }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 3px;
+    color: var(--green); margin-bottom: 0.5rem;
+  }
+  .footer-tagline {
+    color: var(--text3); font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;
+  }
+  .footer-links {
+    display: flex; justify-content: center; gap: 1.5rem;
+    flex-wrap: wrap; margin-bottom: 1.5rem;
+  }
+  .footer-links a {
+    color: var(--text2); text-decoration: none; font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--green); }
+  .footer-copy { color: var(--text3); font-size: 0.75rem; }
+
+  /* ─── WA FLOAT ─── */
+  .wa-float {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: wa-pulse 3s ease-in-out infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
+  @keyframes wa-pulse {
+    0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.3); }
+    50% { box-shadow: 0 8px 24px rgba(37,211,102,0.4), 0 0 0 12px rgba(37,211,102,0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/524431335957" target="_blank" class="wa-float" title="Escríbeme por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">IÑAKI MÉNDEZ</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Contenido</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/524431335957" target="_blank" class="nav-cta">Contactar</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-line"></div>
+  <div class="hero-content">
+
+    <!-- Instagram Card -->
+    <div class="ig-card reveal">
+      <div class="ig-profile-row">
+        <div class="ig-avatar-wrap">
+          <div class="ig-avatar-ring">
+            <div class="ig-avatar-inner">
+              <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224237.png" alt="Iñaki Méndez"
+                   onerror="this.parentElement.innerHTML='<div class=\'ig-avatar-placeholder\'>IM</div>'">
+            </div>
+          </div>
+        </div>
+        <div class="ig-profile-info">
+          <div class="ig-name-row">
+            <span class="ig-name">Iñaki Méndez</span>
+            <div class="ig-verified">
+              <svg viewBox="0 0 10 10" fill="none">
+                <polyline points="2,5 4.5,7.5 8,3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank" class="ig-handle">@inaki_mendez.coach</a>
+          <div class="ig-category">Nutriólogo · Entrenador Personal</div>
+        </div>
+      </div>
+
+      <div class="ig-stats">
+        <div class="ig-stat">
+          <span class="ig-stat-num">27</span>
+          <span class="ig-stat-label">Posts</span>
+        </div>
+        <div class="ig-stat">
+          <span class="ig-stat-num">1.014</span>
+          <span class="ig-stat-label">Seguidores</span>
+        </div>
+        <div class="ig-stat">
+          <span class="ig-stat-num">826</span>
+          <span class="ig-stat-label">Siguiendo</span>
+        </div>
+      </div>
+
+      <div class="ig-bio">
+        Nutriólogo y entrenador personal. Enfoque en <strong>recomposición corporal</strong> y rendimiento.<br>
+        Entrenos y asesoría nutricional.
+      </div>
+
+      <div class="ig-certs">
+        <span class="ig-cert">🎓 Lic. Nutrición</span>
+        <span class="ig-cert">📊 ISAK LV1</span>
+        <span class="ig-cert">💪 WABBA Internacional</span>
+        <span class="ig-cert">🥗 Nutrición Fitness</span>
+      </div>
+
+      <div class="ig-actions">
+        <a href="https://wa.me/524431335957" target="_blank" class="ig-btn ig-btn-primary">Contactar</a>
+        <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank" class="ig-btn ig-btn-secondary">Ver perfil</a>
+        <a href="https://www.instagram.com/nut_mendez/" target="_blank" class="ig-btn ig-btn-secondary">Nutrición</a>
+      </div>
+
+      <!-- Mini grid -->
+      <div class="ig-mini-grid">
+        <div class="ig-grid-item">
+          <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">
+            <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224252.png" alt="Post Instagram"
+                 onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\'ig-grid-placeholder\'>📸</div>'">
+            <div class="ig-grid-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          </a>
+        </div>
+        <div class="ig-grid-item">
+          <a href="https://www.instagram.com/nut_mendez/" target="_blank">
+            <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224326.png" alt="Post Nutrición"
+                 onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\'ig-grid-placeholder\'>🥗</div>'">
+            <div class="ig-grid-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          </a>
+        </div>
+        <div class="ig-grid-item">
+          <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">
+            <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224237.png" alt="Iñaki Méndez"
+                 onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\'ig-grid-placeholder\'>💪</div>'">
+            <div class="ig-grid-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          </a>
+        </div>
+        <div class="ig-grid-item">
+          <a href="https://www.instagram.com/nut_mendez/" target="_blank">
+            <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224302.png" alt="Nutriologo Iñaki"
+                 onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\'ig-grid-placeholder\'>🏋️</div>'">
+            <div class="ig-grid-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          </a>
+        </div>
+        <div class="ig-grid-item">
+          <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">
+            <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224252.png" alt="Post Instagram"
+                 onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\'ig-grid-placeholder\'>📊</div>'">
+            <div class="ig-grid-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          </a>
+        </div>
+        <div class="ig-grid-item">
+          <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">
+            <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224326.png" alt="Post Nutrición"
+                 onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\'ig-grid-placeholder\'>🔥</div>'">
+            <div class="ig-grid-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tagline -->
+    <div class="hero-tagline reveal">
+      <h1>TRANSFORMA TU<br><span>CUERPO Y RENDIMIENTO</span></h1>
+      <p>Recomposición corporal y rendimiento de alto nivel con base científica. Nutrición + entrenamiento = resultados reales.</p>
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-target="1102">0</span>
+          <span class="hero-stat-label">Comunidad total</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-target="4">0</span>
+          <span class="hero-stat-label">Certificaciones</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-target="35">0</span>
+          <span class="hero-stat-label">Posts totales</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll reveal">
+      <span>Scroll</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="sobre-grid">
+      <div class="sobre-text reveal">
+        <div class="section-label">Sobre mí</div>
+        <h2 class="section-title">NUTRIÓLOGO &<br><span>ENTRENADOR</span></h2>
+        <p>Soy Iñaki Méndez, nutriólogo certificado y entrenador personal. Mi enfoque está en la <strong>recomposición corporal</strong> — mejorar tu composición corporal ganando músculo y perdiendo grasa al mismo tiempo — y en el <strong>rendimiento físico</strong> real.</p>
+        <p>Combino ciencia de la nutrición con entrenamiento de fuerza para darte un plan que funciona. Sin dietas extremas, sin promesas vacías: solo resultados con base en evidencia.</p>
+        <div class="sobre-badges">
+          <span class="badge cert">🎓 Lic. Nutrición</span>
+          <span class="badge cert">📊 ISAK Nivel 1</span>
+          <span class="badge cert">💪 Entrenador WABBA Internacional</span>
+          <span class="badge cert">🥗 Nutrición y Suplementos Aplicados al Fitness y Estética Corporal</span>
+          <span class="badge">Recomposición corporal</span>
+          <span class="badge">Rendimiento deportivo</span>
+          <span class="badge">Asesoría nutricional</span>
+          <span class="badge">Entrenamiento de fuerza</span>
+        </div>
+      </div>
+      <div class="sobre-visual reveal">
+        <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank" class="sobre-ig-card">
+          <div class="sobre-ig-avatar">
+            <div class="sobre-ig-avatar-inner">
+              <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224237.png" alt="@inaki_mendez.coach"
+                   onerror="this.style.display='none'">
+            </div>
+          </div>
+          <div class="sobre-ig-info">
+            <div class="sobre-ig-handle">@inaki_mendez.coach</div>
+            <div class="sobre-ig-sub">Coaching · Entrenamiento</div>
+          </div>
+          <div class="sobre-ig-stats">
+            <div class="sobre-ig-stat-num">1.014</div>
+            <div class="sobre-ig-stat-label">seguidores</div>
+          </div>
+          <svg class="ig-logo" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/nut_mendez/" target="_blank" class="sobre-ig-card">
+          <div class="sobre-ig-avatar">
+            <div class="sobre-ig-avatar-inner">
+              <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224302.png" alt="@nut_mendez"
+                   onerror="this.style.display='none'">
+            </div>
+          </div>
+          <div class="sobre-ig-info">
+            <div class="sobre-ig-handle">@nut_mendez</div>
+            <div class="sobre-ig-sub">Nutrición especializada</div>
+          </div>
+          <div class="sobre-ig-stats">
+            <div class="sobre-ig-stat-num">88</div>
+            <div class="sobre-ig-stat-label">seguidores</div>
+          </div>
+          <svg class="ig-logo" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@inaki_mr126" target="_blank" class="sobre-ig-card">
+          <div class="sobre-ig-avatar" style="background: linear-gradient(135deg, #000, #69C9D0, #EE1D52);">
+            <div class="sobre-ig-avatar-inner" style="background:#111;">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style="margin:auto;display:block;margin-top:8px">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.77a4.85 4.85 0 01-1.03-.08z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="sobre-ig-info">
+            <div class="sobre-ig-handle">@inaki_mr126</div>
+            <div class="sobre-ig-sub">TikTok · Contenido fitness</div>
+          </div>
+          <div class="sobre-ig-stats">
+            <div class="sobre-ig-stat-num" style="color:#EE1D52">TikTok</div>
+            <div class="sobre-ig-stat-label">Ver perfil</div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#666">
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.77a4.85 4.85 0 01-1.03-.08z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Lo que ofrezco</div>
+      <h2 class="section-title">SERVICIOS &<br><span>PROGRAMAS</span></h2>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal stagger" style="--i:0">
+        <div class="servicio-icon">🥗</div>
+        <div class="servicio-title">Asesoría Nutricional</div>
+        <div class="servicio-desc">Plan de alimentación personalizado basado en tu composición corporal, objetivos y estilo de vida. Enfoque en recomposición y rendimiento real.</div>
+        <a href="https://wa.me/524431335957?text=Hola%20Iñaki,%20quiero%20información%20sobre%20asesoría%20nutricional" target="_blank" class="servicio-cta">
+          Consultar →
+        </a>
+      </div>
+      <div class="servicio-card reveal stagger" style="--i:1">
+        <div class="servicio-icon">💪</div>
+        <div class="servicio-title">Entrenamiento Personal</div>
+        <div class="servicio-desc">Programación de entrenos diseñada para tus objetivos. Fuerza, hipertrofia y rendimiento con metodología WABBA Internacional.</div>
+        <a href="https://wa.me/524431335957?text=Hola%20Iñaki,%20quiero%20información%20sobre%20entrenamiento%20personal" target="_blank" class="servicio-cta">
+          Consultar →
+        </a>
+      </div>
+      <div class="servicio-card reveal stagger" style="--i:2">
+        <div class="servicio-icon">🔥</div>
+        <div class="servicio-title">Plan Integral</div>
+        <div class="servicio-desc">La combinación perfecta: nutrición + entrenamiento en un solo programa. Recomposición corporal acelerada con seguimiento continuo.</div>
+        <a href="https://wa.me/524431335957?text=Hola%20Iñaki,%20quiero%20información%20sobre%20el%20plan%20integral" target="_blank" class="servicio-cta">
+          Consultar →
+        </a>
+      </div>
+      <div class="servicio-card reveal stagger" style="--i:3">
+        <div class="servicio-icon">📊</div>
+        <div class="servicio-title">Evaluación ISAK</div>
+        <div class="servicio-desc">Medición y análisis preciso de tu composición corporal con método ISAK Nivel 1. La base científica para personalizar tu plan.</div>
+        <a href="https://wa.me/524431335957?text=Hola%20Iñaki,%20quiero%20información%20sobre%20evaluación%20ISAK" target="_blank" class="servicio-cta">
+          Consultar →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Contenido</div>
+      <h2 class="section-title">SÍGUEME EN<br><span>INSTAGRAM</span></h2>
+      <p style="color:var(--text2); margin-bottom: 0.5rem; font-size: 0.9rem;">Contenido sobre nutrición, entrenamiento y resultados reales.</p>
+    </div>
+    <div class="galeria-grid reveal">
+      <div class="galeria-item">
+        <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">
+          <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224252.png" alt="Post @inaki_mendez.coach"
+               onerror="this.style.display='none';this.parentElement.querySelector('.galeria-placeholder') && (this.parentElement.querySelector('.galeria-placeholder').style.display='flex')">
+          <div class="galeria-placeholder" style="display:none">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+            <span>@inaki_mendez.coach</span>
+          </div>
+          <div class="galeria-overlay"><span>Ver en Instagram →</span></div>
+        </a>
+      </div>
+      <div class="galeria-item">
+        <a href="https://www.instagram.com/nut_mendez/" target="_blank">
+          <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224326.png" alt="Post @nut_mendez"
+               onerror="this.style.display='none';this.parentElement.querySelector('.galeria-placeholder') && (this.parentElement.querySelector('.galeria-placeholder').style.display='flex')">
+          <div class="galeria-placeholder" style="display:none; background: linear-gradient(135deg, #0d2818, #1a4a2a);">
+            <span style="font-size:2.5rem">🥗</span>
+            <span>Nutrición</span>
+          </div>
+          <div class="galeria-overlay"><span>@nut_mendez →</span></div>
+        </a>
+      </div>
+      <div class="galeria-item">
+        <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">
+          <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224453.png" alt="Iñaki Méndez Coach"
+               onerror="this.style.display='none';this.parentElement.querySelector('.galeria-placeholder') && (this.parentElement.querySelector('.galeria-placeholder').style.display='flex')">
+          <div class="galeria-placeholder" style="display:none; background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <span style="font-size:2.5rem">💪</span>
+            <span>Entrenos</span>
+          </div>
+          <div class="galeria-overlay"><span>Ver perfil →</span></div>
+        </a>
+      </div>
+      <div class="galeria-item">
+        <a href="https://www.instagram.com/nut_mendez/" target="_blank">
+          <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224302.png" alt="Nutriologo Iñaki Méndez"
+               onerror="this.style.display='none';this.parentElement.querySelector('.galeria-placeholder') && (this.parentElement.querySelector('.galeria-placeholder').style.display='flex')">
+          <div class="galeria-placeholder" style="display:none; background: linear-gradient(135deg, #1a0a00, #3a1800);">
+            <span style="font-size:2.5rem">🔥</span>
+            <span>Nutrición</span>
+          </div>
+          <div class="galeria-overlay"><span>@nut_mendez →</span></div>
+        </a>
+      </div>
+      <div class="galeria-item">
+        <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">
+          <img src="assets/instagram/Captura%20de%20pantalla%202026-05-05%20224237.png" alt="Iñaki Méndez Coach"
+               onerror="this.style.display='none';this.parentElement.querySelector('.galeria-placeholder') && (this.parentElement.querySelector('.galeria-placeholder').style.display='flex')">
+          <div class="galeria-placeholder" style="display:none">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+            <span>@inaki_mendez.coach</span>
+          </div>
+          <div class="galeria-overlay"><span>Ver perfil →</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="galeria-link reveal">
+      <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Ver todo en @inaki_mendez.coach
+      </a>
+      <a href="https://www.instagram.com/nut_mendez/" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Nutrición en @nut_mendez
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTRICAS -->
+<section id="metricas">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; margin-bottom: 1rem;">
+      <div class="section-label">En números</div>
+      <h2 class="section-title">LA COMUNIDAD<br><span>EN DATOS</span></h2>
+    </div>
+    <div class="metricas-grid reveal">
+      <div class="metrica">
+        <div class="metrica-icon">📱</div>
+        <span class="metrica-num counter" data-target="1014">0</span>
+        <span class="metrica-label">Seguidores Coach IG</span>
+      </div>
+      <div class="metrica">
+        <div class="metrica-icon">🥗</div>
+        <span class="metrica-num counter" data-target="88">0</span>
+        <span class="metrica-label">Seguidores Nutrición IG</span>
+      </div>
+      <div class="metrica">
+        <div class="metrica-icon">🎓</div>
+        <span class="metrica-num counter" data-target="4">0</span>
+        <span class="metrica-label">Certificaciones</span>
+      </div>
+      <div class="metrica">
+        <div class="metrica-icon">📝</div>
+        <span class="metrica-num counter" data-target="35">0</span>
+        <span class="metrica-label">Publicaciones totales</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-inner">
+    <div class="reveal">
+      <div class="section-label">¿Listo para empezar?</div>
+      <h2 class="section-title">HABLEMOS DE<br><span>TU OBJETIVO</span></h2>
+      <p>Si quieres transformar tu cuerpo y rendimiento con ciencia real, estoy aquí. Escríbeme y te cuento cómo trabajamos juntos.</p>
+    </div>
+    <div class="contacto-cards reveal">
+      <a href="https://wa.me/524431335957" target="_blank" class="contacto-card wa">
+        <div class="contacto-card-icon">💬</div>
+        <div class="contacto-card-title">WhatsApp</div>
+        <div class="contacto-card-sub">+52 443 133 5957</div>
+      </a>
+      <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank" class="contacto-card ig1">
+        <div class="contacto-card-icon">📸</div>
+        <div class="contacto-card-title">Instagram Coaching</div>
+        <div class="contacto-card-sub">@inaki_mendez.coach</div>
+      </a>
+      <a href="https://www.instagram.com/nut_mendez/" target="_blank" class="contacto-card ig2">
+        <div class="contacto-card-icon">🥗</div>
+        <div class="contacto-card-title">Instagram Nutrición</div>
+        <div class="contacto-card-sub">@nut_mendez</div>
+      </a>
+      <a href="https://www.tiktok.com/@inaki_mr126" target="_blank" class="contacto-card tiktok">
+        <div class="contacto-card-icon">🎵</div>
+        <div class="contacto-card-title">TikTok</div>
+        <div class="contacto-card-sub">@inaki_mr126</div>
+      </a>
+    </div>
+    <div class="reveal">
+      <a href="https://wa.me/524431335957?text=Hola%20Iñaki,%20me%20interesa%20trabajar%20contigo.%20¿Podemos%20hablar?" target="_blank" class="cta-whatsapp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Escríbeme por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">IÑAKI MÉNDEZ</div>
+    <div class="footer-tagline">Nutriólogo · Entrenador Personal · Recomposición Corporal</div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/inaki_mendez.coach/" target="_blank">@inaki_mendez.coach</a>
+      <a href="https://www.instagram.com/nut_mendez/" target="_blank">@nut_mendez</a>
+      <a href="https://www.tiktok.com/@inaki_mr126" target="_blank">TikTok</a>
+      <a href="https://wa.me/524431335957" target="_blank">WhatsApp</a>
+    </div>
+    <div class="footer-copy">© 2026 Iñaki Méndez. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Intersection Observer for reveals
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Counter animation
+  function animateCounter(el, target, duration = 1500) {
+    let start = 0;
+    const step = Math.ceil(target / (duration / 16));
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = start.toLocaleString('es-MX');
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = '1';
+        const target = parseInt(entry.target.dataset.target);
+        animateCounter(entry.target, target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter, [data-target]').forEach(el => {
+    if (el.dataset.target) counterObserver.observe(el);
+  });
+
+  // Parallax on hero bg
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+      heroBg.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      const el = document.querySelector(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
