@@ -616,6 +616,82 @@
   .footer-links a:hover { color: var(--green); }
   .footer-copy { color: var(--text3); font-size: 0.75rem; }
 
+  /* ─── ZONA CLIENTES ─── */
+  #clientes { background: var(--bg); position: relative; overflow: hidden; }
+  #clientes::before {
+    content: '';
+    position: absolute; right: -5%; bottom: 10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(0,229,160,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .clientes-header { text-align: center; margin-bottom: 2.5rem; }
+  .clientes-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,229,160,0.08);
+    border: 1px solid rgba(0,229,160,0.25);
+    color: var(--green); font-size: 0.72rem; font-weight: 700;
+    padding: 0.35rem 1rem; border-radius: 50px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    animation: pulse-border 3s ease-in-out infinite;
+  }
+  @keyframes pulse-border {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,160,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(0,229,160,0); }
+  }
+  .clientes-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem; margin-bottom: 2.5rem;
+  }
+  .cliente-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .cliente-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--card) 100%);
+    pointer-events: none;
+  }
+  .cliente-card-lock {
+    position: absolute; top: 1rem; right: 1rem;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1;
+  }
+  .cliente-card-blur {
+    filter: blur(3px); opacity: 0.35;
+    user-select: none; pointer-events: none;
+    margin-top: 0.75rem;
+  }
+  .cliente-card-label {
+    font-size: 0.72rem; color: var(--green);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-weight: 600; margin-bottom: 0.4rem;
+  }
+  .cliente-card-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .cliente-bar {
+    height: 9px; background: var(--bg3); border-radius: 4px; margin-bottom: 8px;
+  }
+  .clientes-cta-box {
+    background: var(--card); border: 1px solid rgba(0,229,160,0.15);
+    border-radius: 20px; padding: 2rem;
+    text-align: center; max-width: 540px; margin: 0 auto;
+  }
+  .clientes-cta-box p {
+    color: var(--text2); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem;
+  }
+  .footer-dev { color: var(--text3); font-size: 0.72rem; margin-top: 0.6rem; }
+  .footer-dev a {
+    color: var(--text3); text-decoration: none; transition: color 0.2s;
+    border-bottom: 1px solid transparent;
+  }
+  .footer-dev a:hover { color: var(--green); border-bottom-color: var(--green); }
+
   /* ─── WA FLOAT ─── */
   .wa-float {
     position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99;
@@ -650,6 +726,7 @@
     <li><a href="#sobre">Sobre mí</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#galeria">Contenido</a></li>
+    <li><a href="#clientes">Clientes</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="https://wa.me/524431335957" target="_blank" class="nav-cta">Contactar</a>
@@ -1082,6 +1159,73 @@
   </div>
 </section>
 
+<!-- ZONA DE CLIENTES -->
+<section id="clientes">
+  <div class="section-inner">
+    <div class="clientes-header reveal">
+      <span class="clientes-badge">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Próximamente
+      </span>
+      <div class="section-label">Área exclusiva</div>
+      <h2 class="section-title">PORTAL DE<br><span>CLIENTES</span></h2>
+      <p style="color:var(--text2); max-width: 480px; margin: 0 auto; font-size: 0.95rem; line-height: 1.6;">
+        Cada cliente de Iñaki tendrá acceso directo a su plan personalizado — su rutina, su dieta y su progreso — en un solo lugar. Sin WhatsApp, sin PDFs perdidos.
+      </p>
+    </div>
+    <div class="clientes-grid reveal">
+      <div class="cliente-card">
+        <div class="cliente-card-lock">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="cliente-card-label">Entrenamiento</div>
+        <div class="cliente-card-title">Tu Rutina de Esta Semana</div>
+        <div class="cliente-card-blur">
+          <div class="cliente-bar"></div>
+          <div class="cliente-bar" style="width:80%"></div>
+          <div class="cliente-bar" style="width:90%"></div>
+          <div class="cliente-bar" style="width:70%"></div>
+          <div class="cliente-bar" style="width:85%"></div>
+        </div>
+      </div>
+      <div class="cliente-card">
+        <div class="cliente-card-lock">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="cliente-card-label">Nutrición</div>
+        <div class="cliente-card-title">Tu Plan Nutricional</div>
+        <div class="cliente-card-blur">
+          <div class="cliente-bar" style="width:75%"></div>
+          <div class="cliente-bar"></div>
+          <div class="cliente-bar" style="width:85%"></div>
+          <div class="cliente-bar" style="width:60%"></div>
+          <div class="cliente-bar" style="width:95%"></div>
+        </div>
+      </div>
+      <div class="cliente-card">
+        <div class="cliente-card-lock">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="cliente-card-label">Seguimiento</div>
+        <div class="cliente-card-title">Tu Progreso</div>
+        <div class="cliente-card-blur">
+          <div class="cliente-bar" style="width:90%"></div>
+          <div class="cliente-bar" style="width:65%"></div>
+          <div class="cliente-bar"></div>
+          <div class="cliente-bar" style="width:80%"></div>
+          <div class="cliente-bar" style="width:55%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="clientes-cta-box reveal">
+      <p>¿Eres cliente de Iñaki? Este espacio es para ti. Accede a tu rutina, tu plan de nutrición y tu seguimiento en un solo lugar.</p>
+      <a href="https://wa.me/524431335957?text=Hola%20Iñaki,%20quiero%20información%20para%20ser%20cliente" target="_blank" class="ig-btn ig-btn-primary" style="display:inline-block; padding: 0.75rem 2.25rem; border-radius: 50px; font-size: 0.9rem; text-decoration:none;">
+        Quiero ser cliente →
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1094,6 +1238,7 @@
       <a href="https://wa.me/524431335957" target="_blank">WhatsApp</a>
     </div>
     <div class="footer-copy">© 2026 Iñaki Méndez. Todos los derechos reservados.</div>
+    <div class="footer-dev">Web desarrollada por <a href="mailto:leo261102leo@gmail.com">Leo García</a></div>
   </div>
 </footer>
 
